@@ -1,10 +1,10 @@
 "use client";
 import { useUserContext } from "@/context/context";
 import React, { useEffect } from "react";
-import ConnectionCard from "../connectionCard";
+import LoginCard from "../loginCard";
 import { verify } from "jsonwebtoken";
 
-export default function ConnectionRootCard({ headerText, children }) {
+export default function LoginRootCard({ headerText, children }) {
   const context = useUserContext();
 
   useEffect(() => {
@@ -16,11 +16,11 @@ export default function ConnectionRootCard({ headerText, children }) {
         context.logout();
       }
     }
-  }, [context.user, context.token]);
+  }, [context.token]);
 
-  return context.user != null && context.token != null ? (
+  return context.token != null ? (
     <>{children}</>
   ) : (
-    <ConnectionCard headerText={headerText} />
+    <LoginCard />
   );
 }

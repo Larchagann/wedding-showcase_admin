@@ -5,40 +5,25 @@
   height: 3rem;
   // margin-bottom: 1rem;
   background-color: goldenrod;
-  box-shadow: 0 3px 3px rgb(0,0,0,0.2);
+  box-shadow: 0 3px 3px rgb(0, 0, 0, 0.2);
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
     height: 100%;
-    .navbar {
+    .banner {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
       height: 100%;
-      .sidebarButton {
-        display: inline-flex;
-        align-items: center;
-        background-color: goldenrod;
-        border : none;
-        :focus {
-          background-color: white;
-          color: goldenrod;
-          border-radius: 0.25rem;
-        }
-        @media (min-width: 770px) {
-          display: none;
-        }
-      }
-      .linkList {
+      .title {
         padding-left: 1rem;
         display: none;
         list-style-type: none;
         column-gap: 1.5rem;
         color: white;
         font-family: allura;
-        font-size: 28px;
-
+        font-size: 30px;
         @media (min-width: 770px) {
           display: flex;
           justify-content: left;
@@ -55,7 +40,7 @@
         font-family: allura;
         font-style: italic;
         font-size: 18px;
-        
+
         padding-right: 1rem;
         border-right: 1px solid white;
       }
