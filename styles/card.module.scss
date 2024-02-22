@@ -1,0 +1,79 @@
+.btnAddMobile {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  margin-bottom: 1rem;
+}
+.btnValiderMobile {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.card {
+  margin-bottom: 1.5rem;
+  box-shadow: 0px 2px 1px -1px rgba(218, 165, 32, 0.8),
+    0px 1px 1px 0px rgba(218, 165, 32, 0.74),
+    0px 1px 3px 0px rgba(218, 165, 32, 0.72);
+  .cardHeader, .cardHeaderMobile {
+    padding-bottom: 0;
+  }
+  .cardHeaderSimple, .cardHeader {
+    color: #daa520;
+  }
+  .cardContent {
+    .alertRed {
+      font-size: 14px;
+      color: darkred;
+    }
+    .itemContent,
+    .itemCenterContent {
+      margin-bottom: 0.5rem;
+    }
+    
+    .itemCenterContent {
+      display: flex;
+      text-align: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .table {
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+      .iconDelete {
+        color:darkred;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    .btnValider {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mobileLine {
+      display: flex;
+      width: 100%;
+      .mobileLineLabel, .mobileLineButton {
+        padding-top: 0.5rem;
+      }
+      .mobileLineLabel {
+        width: 70%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      .mobileLineButton {
+        width: 30%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+  }
+}
