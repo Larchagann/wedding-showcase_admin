@@ -1,3 +1,36 @@
+.iconGreen {
+  color: green;
+}
+
+.iconRed {
+  color: darkred;
+}
+
+.iconGrey {
+  color: grey;
+}
+
+.icon,
+.iconRed {
+  &:hover {
+    cursor: pointer;
+  }
+}
+.checkboxContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modalBoxContainer {
+  margin-bottom: 0.5rem;
+}
+.modalButtonContainer {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .btnAddMobile {
   width: 100%;
   height: 100%;
@@ -17,10 +50,12 @@
   box-shadow: 0px 2px 1px -1px rgba(218, 165, 32, 0.8),
     0px 1px 1px 0px rgba(218, 165, 32, 0.74),
     0px 1px 3px 0px rgba(218, 165, 32, 0.72);
-  .cardHeader, .cardHeaderMobile {
+  .cardHeader,
+  .cardHeaderMobile {
     padding-bottom: 0;
   }
-  .cardHeaderSimple, .cardHeader {
+  .cardHeaderSimple,
+  .cardHeader {
     color: #daa520;
   }
   .cardContent {
@@ -32,7 +67,7 @@
     .itemCenterContent {
       margin-bottom: 0.5rem;
     }
-    
+
     .itemCenterContent {
       display: flex;
       text-align: center;
@@ -43,7 +78,7 @@
       margin-top: 1.5rem;
       margin-bottom: 1.5rem;
       .iconDelete {
-        color:darkred;
+        color: darkred;
         &:hover {
           cursor: pointer;
         }
@@ -59,7 +94,8 @@
     .mobileLine {
       display: flex;
       width: 100%;
-      .mobileLineLabel, .mobileLineButton {
+      .mobileLineLabel,
+      .mobileLineButton {
         padding-top: 0.5rem;
       }
       .mobileLineLabel {

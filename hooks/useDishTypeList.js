@@ -29,9 +29,7 @@ export function useDishTypeList() {
     })
       .then((response) => response.json())
       .then((data) => {
-        const oldDatas = dishTypeList;
-        oldDatas.push(data);
-        setDishTypeList(oldDatas);
+        setDishTypeList([...dishTypeList, data])
         return true;
       })
       .catch((error) => {
@@ -63,11 +61,9 @@ export function useDishTypeList() {
   };
 
   const delDishType = async (deleteData, token) => {
-    const oldDatas = dishTypeList;
     const isDelete = await deleteDishType(deleteData, token);
     if (isDelete == true)
-      oldDatas.filter((elmt) => elmt.idDishType != deleteData.idDishType);
-    setDishTypeList(oldDatas);
+      setDishTypeList((prev) => prev.filter((elmt) => elmt.idDishType != deleteData.idDishType));
   };
 
   return {

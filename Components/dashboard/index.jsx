@@ -6,6 +6,8 @@ import { useDishTypeList } from "@/hooks/useDishTypeList";
 import { useInvitation } from "@/hooks/useInvitation";
 import { Grid } from "@mui/material";
 import InvitationCard from "../invitationCard";
+import IsAnsweredChartCard from "../isAnsweredChartCard";
+import DishTypeCard from "../dishTypeCard";
 
 export default function Dashboard() {
   const context = useUserContext();
@@ -26,14 +28,23 @@ export default function Dashboard() {
     [dishTypes.getDishTypeList]
   );
 
-  return (
+  return invitations.datas != null ? (
     <>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={4}></Grid>
-        <Grid item xs={12} md={8}>
+        <Grid item xs={12} md={2}>
+          <IsAnsweredChartCard invitations={invitations} />
+          <DishTypeCard
+            dishTypesDatas={dishTypes.datas}
+            addDishType={dishTypes.createDishType}
+            deleteDishType={dishTypes.deleteDishType}
+          />
+        </Grid>
+        <Grid item xs={12} md={10}>
           <InvitationCard invitations={invitations} />
         </Grid>
       </Grid>
     </>
+  ) : (
+    <>Chargement...</>
   );
 }
