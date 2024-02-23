@@ -37,6 +37,7 @@ const invitationModel = {
 const errorGuestModel = {
   errorLastName: false,
   errorFirstName: false,
+  index: 1,
 };
 
 const errorInvitationModel = {
@@ -76,7 +77,10 @@ export default function AddInvitationModal({
         ...errorInvitationModel,
         errorName: false,
         errorMailAddress: false,
-        guest: invitation.guest.map((item) => errorGuestModel),
+        guest: invitation.guest.map((item, index) => ({
+          ...errorGuestModel,
+          index: index + 5,
+        })),
       });
     }
   }, [invitation]);
@@ -92,7 +96,10 @@ export default function AddInvitationModal({
   const handleClickValidate = () => {
     let isValid = true;
 
-    if (checkValue(data.name) || checkValideAddressMail(data.mailAddress) == null) {
+    if (
+      checkValue(data.name) ||
+      checkValideAddressMail(data.mailAddress) == null
+    ) {
       isValid = false;
     }
     for (let item of data.guest) {
@@ -136,7 +143,6 @@ export default function AddInvitationModal({
             <Typography id="modal-modal-title" variant="h6" component="h2">
               Ajout d'une invitation
             </Typography>
-
             <br />
             <Grid container spacing={2}>
               <Grid item xs={4}>
@@ -197,7 +203,11 @@ export default function AddInvitationModal({
                   ...data,
                   guest: [...data.guest, guestModel],
                 });
-                setError({ ...error, guest: [...error.guest, errorGuestModel] });
+                setError({
+                  ...error,
+                  guest: [...error.guest,{...errorGuestModel,
+                  index: error.guest.slice().index + 50}],
+                });
               }}
               variant="contained"
             >
@@ -210,7 +220,7 @@ export default function AddInvitationModal({
                 (elmt, indexElmt) => indexElmt == index
               );
               return (
-                <div key={index} className={styles.modalBoxContainer}>
+                <div key={errorGuest.index} className={styles.modalBoxContainer}>
                   <Grid container spacing={2}>
                     <Grid item xs={4}>
                       <TextField
@@ -291,6 +301,12 @@ export default function AddInvitationModal({
                             setData({
                               ...data,
                               guest: data.guest.filter(
+                                (elmt, indexElmt) => indexElmt != index
+                              ),
+                            });
+                            setError({
+                              ...error,
+                              guest: error.guest.filter(
                                 (elmt, indexElmt) => indexElmt != index
                               ),
                             });

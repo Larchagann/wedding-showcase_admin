@@ -201,26 +201,6 @@ export function useInvitation() {
     const createList = updateData.guest.filter(
       (item) => item.idGuest == null || item.idGuest == undefined
     );
-    //On récupère la liste des invités à mettre à jour
-    let updateList = [];
-    // updateData.guest.filter(
-    //   (item) => item.idGuest != null && item.idGuest != undefined
-    // );
-    // updateList = oldGuestList.filter((item) => {
-    //   const isFind = updateList.find((guest) => {
-    //     return item.idGuest == guest.idGuest;
-    //   });
-    //   if (isFind)
-    //     return (
-    //       isFind.lastName != item.lastName ||
-    //       isFind.firstName != item.firstName ||
-    //       isFind.isChild != item.isChild ||
-    //       isFind.isMainGuest != item.isMainGuest ||
-    //       isFind.isNeedAccomodation != item.isNeedAccomodation ||
-    //       isFind.isPresent != item.isPresent
-    //     );
-    //   else return isFind;
-    // });
     //On récupère la liste des invités à supprimer de l'invitattion
     const deleteList = oldGuestList.filter((item) => {
       const isFind = updateData.guest.find((guest) => {
@@ -228,7 +208,34 @@ export function useInvitation() {
       });
       return !isFind;
     });
-    
+    //On récupère la liste des invités à mettre à jour
+    let updateList = updateData.guest.filter(
+      (item) => item.idGuest != null && item.idGuest != undefined
+    );
+    updateList = updateList.filter((item) => {
+      const isFind = deleteList.find((guest) => {
+        return item.idGuest == guest.idGuest;
+      });
+      return !isFind;
+    });
+    updateList = updateList.filter((item) => {
+      const isFind = oldGuestList.find((guest) => {
+        return item.idGuest == guest.idGuest;
+      });
+      if (isFind) {
+        if (
+          isFind.lastName != item.lastName ||
+          isFind.firstName != item.firstName ||
+          isFind.isChild != item.isChild ||
+          isFind.isMainGuest != item.isMainGuest ||
+          isFind.isNeedAccomodation != item.isNeedAccomodation ||
+          isFind.isPresent != item.isPresent
+        ) {
+          return isFind;
+        } else return false;
+      } else return false;
+    });
+
     let newGuestList = [];
     let updateGuestList = [];
     let deleteGuestList = [];
@@ -251,12 +258,12 @@ export function useInvitation() {
       }
     }
     //On met à jour les invités modifié
-    // if (updateList.length > 0) {
-    //   for (let item of updateList) {
-    //     const updateGuest = await putGuest(item, token);
-    //     updateGuestList.push(updateGuest);
-    //   }
-    // }
+    if (updateList.length > 0) {
+      for (let item of updateList) {
+        const updateGuest = await putGuest(item, token);
+        updateGuestList.push(updateGuest);
+      }
+    }
 
     //On met a jour les données
     if (newGuestList.length > 0) {
