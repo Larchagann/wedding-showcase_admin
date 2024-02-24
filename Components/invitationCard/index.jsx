@@ -222,7 +222,7 @@ export default function InvitationCard({ invitations }) {
               </>
             ) : (
               <div className={styles.itemCenterContent}>
-                Vous n'avez pas ajouté d'invitations
+                Vous n&apos;avez pas ajouté d&apos;invitations
               </div>
             )}
           </>

@@ -7,16 +7,16 @@ import { verify } from "jsonwebtoken";
 export default function LoginRootCard({ headerText, children }) {
   const context = useUserContext();
 
-  useEffect(() => {
+  useEffect((logout = context.logout) => {
     if (context.token != null) {
       try {
         verify(context.token, process.env.NEXT_PUBLIC_API_JWT_KEY);
       } catch (error) {
         console.log("SESSION EXPIRED");
-        context.logout();
+        logout();
       }
     }
-  }, [context.token]);
+  }, [context.token, context.logout]);
 
   return context.token != null ? (
     <>{children}</>

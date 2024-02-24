@@ -65,7 +65,7 @@ export default function AddDishTypeModal({
         <ThemeProvider theme={primaryTheme}>
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Ajout d'un type de plat
+              Ajout d&apos;un type de plat
             </Typography>
             <br />
             <TextField

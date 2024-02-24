@@ -141,7 +141,7 @@ export default function AddInvitationModal({
         <ThemeProvider theme={primaryTheme}>
           <Box sx={style}>
             <Typography id="modal-modal-title" variant="h6" component="h2">
-              Ajout d'une invitation
+              Ajout d&apos;une invitation
             </Typography>
             <br />
             <Grid container spacing={2}>

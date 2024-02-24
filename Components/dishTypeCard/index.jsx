@@ -98,7 +98,7 @@ export default function DishTypeCard({
               </div>
             ) : (
               <div className={styles.itemCenterContent}>
-                Vous n'avez pas encore ajouté de type de plats.
+                Vous n&apos;avez pas encore ajouté de type de plats.
               </div>
             )}
           </>

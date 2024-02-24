@@ -18,14 +18,14 @@ export default function Dashboard() {
     (getInvitationList = invitations.getInvitationList) => {
       getInvitationList(context.token);
     },
-    [invitations.getInvitationList]
+    [invitations.getInvitationList, context.token]
   );
 
   useEffect(
     (getDishTypeList = dishTypes.getDishTypeList) => {
       getDishTypeList(context.token);
     },
-    [dishTypes.getDishTypeList]
+    [dishTypes.getDishTypeList, context.token]
   );
 
   return invitations.datas != null ? (
