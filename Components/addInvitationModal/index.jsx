@@ -199,14 +199,17 @@ export default function AddInvitationModal({
             <br />
             <Button
               onClick={() => {
+                const last = error.guest[error.guest.length - 1];
                 setData({
                   ...data,
                   guest: [...data.guest, guestModel],
                 });
                 setError({
                   ...error,
-                  guest: [...error.guest,{...errorGuestModel,
-                  index: error.guest.slice().index + 50}],
+                  guest: [
+                    ...error.guest,
+                    { ...errorGuestModel, index: last.index + 50 },
+                  ],
                 });
               }}
               variant="contained"
@@ -216,11 +219,14 @@ export default function AddInvitationModal({
             <br />
             <br />
             {data.guest.map((guest, index) => {
-              const errorGuest = data.guest.find(
+              const errorGuest = error.guest.find(
                 (elmt, indexElmt) => indexElmt == index
               );
               return (
-                <div key={errorGuest.index} className={styles.modalBoxContainer}>
+                <div
+                  key={errorGuest.index}
+                  className={styles.modalBoxContainer}
+                >
                   <Grid container spacing={2}>
                     <Grid item xs={4}>
                       <TextField
