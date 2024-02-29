@@ -17,7 +17,7 @@ export function useUser() {
         setTimeout(() => {
           console.log("LOGOUT");
           logout();
-        }, 3600000);
+        }, 86400000);
       })
       .catch((error) => console.log(error));
   };
