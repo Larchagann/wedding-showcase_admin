@@ -144,7 +144,6 @@ function Row({ invitation, updateInvitation, deleteInvitation }) {
 
 export default function InvitationCard({ invitations }) {
   const context = useUserContext();
-
   const [modal, setModal] = useState({
     isOpen: false,
     invitation: null,
@@ -204,7 +203,7 @@ export default function InvitationCard({ invitations }) {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {invitations.datas.map((item) => {
+                      {invitations.datas.sort((a,b) => a.name.localeCompare(b.name)).map((item) => {
                         return (
                           <Row
                             key={item.idInvitation}

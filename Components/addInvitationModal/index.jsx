@@ -281,7 +281,7 @@ export default function AddInvitationModal({
                         control={
                           <Checkbox
                             key={`invitationcheckbox${index}`}
-                            checked={guest.isCityHallInvited}
+                            checked={guest.isChild}
                             onChange={(event) => {
                               setData({
                                 ...data,
