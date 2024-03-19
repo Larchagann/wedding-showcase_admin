@@ -3,7 +3,7 @@
 import React from "react";
 import styles from "../../styles/card.module.scss";
 import { cardHeaderTitleTypographyProps } from "@/styles/muiTheme";
-import { Card, CardContent, CardHeader } from "@mui/material";
+import { Card, CardContent, CardHeader, Grid } from "@mui/material";
 import { Doughnut } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
@@ -18,16 +18,18 @@ const getGuestCount = (invitations, type) => {
         switch (type) {
           case "adults":
             guestNumber += invitation.guest.filter(
-              (item) => !item.isChild
+              (item) => !item.isChild && item.isPresent
             ).length;
             break;
           case "childs":
             guestNumber += invitation.guest.filter(
-              (item) => item.isChild
+              (item) => item.isChild && item.isPresent
             ).length;
             break;
           default:
-            guestNumber += invitation.guest.length;
+            guestNumber += invitation.guest.filter(
+              (item) => item.isPresent
+            ).length;
         }
       }
       return guestNumber;
@@ -64,23 +66,38 @@ export default function AnsweredChartCard({ invitations }) {
       <CardContent className={styles.cardContent}>
         <Doughnut data={data} />
         <br />
-        <div
-          className={styles.chartComments}
-        >{`Nombres d'invités : ${getGuestCount(invitations.datas)}`}</div>
+        <Grid container spacing={0}>
+          <Grid item xs={12} md={10}>
+            <div className={styles.chartComments}>{`Nombres d'invités : `}</div>
+          </Grid>
+          <Grid item xs={12} md={2}>
+            <div className={styles.chartComments}>
+              {getGuestCount(invitations.datas)}
+            </div>
+          </Grid>
+        </Grid>
         <hr />
-        <div
-          className={styles.chartComments}
-        >{`Nombres d'adultes : ${getGuestCount(
-          invitations.datas,
-          "adults"
-        )}`}</div>
+        <Grid container spacing={0}>
+          <Grid item xs={12} md={10}>
+            <div className={styles.chartComments}>{`Nombres d'adultes : `}</div>
+          </Grid>
+          <Grid item xs={12} md={2}>
+            <div className={styles.chartComments}>
+              {getGuestCount(invitations.datas, "adults")}
+            </div>
+          </Grid>
+        </Grid>
         <hr />
-        <div
-          className={styles.chartComments}
-        >{`Nombres d'enfants : ${getGuestCount(
-          invitations.datas,
-          "childs"
-        )}`}</div>
+        <Grid container spacing={0}>
+          <Grid item xs={12} md={10}>
+            <div className={styles.chartComments}>{`Nombres d'enfants : `}</div>
+          </Grid>
+          <Grid item xs={12} md={2}>
+            <div className={styles.chartComments}>
+              {getGuestCount(invitations.datas, "childs")}
+            </div>
+          </Grid>
+        </Grid>
       </CardContent>
     </Card>
   );
