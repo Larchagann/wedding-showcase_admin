@@ -5,6 +5,7 @@ import {
   Card,
   CardContent,
   CardHeader,
+  InputAdornment,
   TextField,
   ThemeProvider,
 } from "@mui/material";
@@ -16,9 +17,11 @@ import {
   primaryTheme,
 } from "@/styles/muiTheme";
 import Footer from "../layout/footer";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 export default function LoginCard(props) {
   const context = useUserContext();
+  const [showPwd, setShowPwd] = useState(false);
   const [loginInfo, setLoginInfo] = useState({
     login: "",
     password: "",
@@ -38,50 +41,67 @@ export default function LoginCard(props) {
     context.connect(loginInfo);
   };
 
+  const handleClickShowPwd = () => {
+    setShowPwd(!showPwd);
+  };
+
   return (
     <main>
       <div className="login-page">
         <div className="page-container login-page-content">
-            <Card className={styles.card}>
-              <CardHeader
-                className={styles.cardHeader}
-                title={headerText}
-                titleTypographyProps={cardHeaderTitleTypographyProps}
-              />
-              <CardContent className={styles.cardContent}>
+          <Card className={styles.card}>
+            <CardHeader
+              className={styles.cardHeader}
+              title={headerText}
+              titleTypographyProps={cardHeaderTitleTypographyProps}
+            />
+            <CardContent className={styles.cardContent}>
+              <div className={styles.itemCenterContent}>
+                Veuillez vous connecter avec vos identifiant et mot de passe
+              </div>
+              <ThemeProvider theme={primaryTheme}>
                 <div className={styles.itemCenterContent}>
-                  Veuillez vous connecter avec vos identifiant et mot de passe
+                  <TextField
+                    fullWidth
+                    type="text"
+                    onChange={handleChangeLogin}
+                    variant="outlined"
+                    label="Identifiant"
+                    size="small"
+                  />
                 </div>
-                <ThemeProvider theme={primaryTheme}>
-                  <div className={styles.itemCenterContent}>
-                    <TextField
-                      fullWidth
-                      type="text"
-                      onChange={handleChangeLogin}
-                      variant="outlined"
-                      label="Identifiant"
-                      size="small"
-                    />
-                  </div>
-                  <div className={styles.itemCenterContent}>
-                    <TextField
-                      fullWidth
-                      type="text"
-                      onChange={handleChangePassword}
-                      variant="outlined"
-                      label="Mot de passe"
-                      size="small"
-                    />
-                  </div>
-                  <div className={styles.itemCenterContent}>
-                    <Button onClick={handleClickValidate} variant="outlined">
-                      Se connecter
-                    </Button>
-                  </div>
-                </ThemeProvider>
-              </CardContent>
-            </Card>
-          </div>
+                <div className={styles.itemCenterContent}>
+                  <TextField
+                    fullWidth
+                    type={showPwd ? "text" : "password"}
+                    onChange={handleChangePassword}
+                    variant="outlined"
+                    label="Mot de passe"
+                    size="small"
+                    InputProps={{
+                      endAdornment: (
+                        <>
+                          <InputAdornment position="end">
+                            {showPwd ? (
+                              <FaEyeSlash className={styles.icon} size={20} onClick={handleClickShowPwd} />
+                            ) : (
+                              <FaEye className={styles.icon} size={20} onClick={handleClickShowPwd}/>
+                            )}
+                          </InputAdornment>
+                        </>
+                      ),
+                    }}
+                  />
+                </div>
+                <div className={styles.itemCenterContent}>
+                  <Button onClick={handleClickValidate} variant="outlined">
+                    Se connecter
+                  </Button>
+                </div>
+              </ThemeProvider>
+            </CardContent>
+          </Card>
+        </div>
         <Footer />
       </div>
     </main>
