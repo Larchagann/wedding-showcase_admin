@@ -35,7 +35,7 @@ export default function DishTypeCard({
 
   const handleModal = () => setModalOpen(!modalOpen);
   return (
-    <Card className={styles.card}>
+    <Card className={styles.tableCard2}>
       <CardHeader
         className={styles.cardHeader}
         title="Types de plat"
@@ -62,7 +62,7 @@ export default function DishTypeCard({
             </div>
             {dishTypesDatas.length > 0 ? (
               <div className={styles.table}>
-                <TableContainer component={Paper}>
+                <TableContainer component={Paper} style={{ maxHeight: 370 }}>
                   <Table sx={{ minWidth: 200 }} aria-label="simple table">
                     <TableHead>
                       <TableRow>

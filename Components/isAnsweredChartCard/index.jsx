@@ -51,7 +51,7 @@ export default function IsAnsweredChartCard({ invitations }) {
   };
 
   return (
-    <Card className={styles.card}>
+    <Card className={styles.chartCard}>
       <CardHeader
         className={styles.cardHeader}
         title="Invitations"

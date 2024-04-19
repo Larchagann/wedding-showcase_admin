@@ -9,11 +9,14 @@ import InvitationCard from "../invitationCard";
 import IsAnsweredChartCard from "../isAnsweredChartCard";
 import DishTypeCard from "../dishTypeCard";
 import AnsweredChartCard from "../answeredChartCard";
+import { useDishList } from "@/hooks/useDishList";
+import DishCard from "../dishCard";
 
 export default function Dashboard() {
   const context = useUserContext();
   const invitations = useInvitation();
   const dishTypes = useDishTypeList();
+  const dishs = useDishList();
 
   useEffect(
     (getInvitationList = invitations.getInvitationList) => {
@@ -29,28 +32,34 @@ export default function Dashboard() {
     [dishTypes.getDishTypeList, context.token]
   );
 
+  useEffect(
+    (getDishList = dishs.getDishList) => {
+      getDishList(context.token);
+    },
+    [dishs.getDishList, context.token]
+  );
+
   return invitations.datas != null ? (
     <>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
-          <Grid container rowSpacing={0} columnSpacing={2}>
-            <Grid item xs={12} md={6}>
-              <IsAnsweredChartCard invitations={invitations} />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <AnsweredChartCard invitations={invitations} />
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <DishTypeCard
-                dishTypesDatas={dishTypes.datas}
-                addDishType={dishTypes.createDishType}
-                deleteDishType={dishTypes.deleteDishType}
-              />
-            </Grid>
-          </Grid>
+        <Grid item xs={12} md={2}>
+          <IsAnsweredChartCard invitations={invitations} />
+        </Grid>
+        <Grid item xs={12} md={2}>
+          <AnsweredChartCard invitations={invitations} />
         </Grid>
         <Grid item xs={12} md={8}>
           <InvitationCard invitations={invitations} />
+        </Grid>
+        <Grid item xs={12} md={2}>
+          <DishTypeCard
+            dishTypesDatas={dishTypes.datas}
+            addDishType={dishTypes.createDishType}
+            deleteDishType={dishTypes.deleteDishType}
+          />
+        </Grid>
+        <Grid item xs={12} md={5}>
+          <DishCard dishs={dishs} />
         </Grid>
       </Grid>
     </>

@@ -156,7 +156,7 @@ export default function InvitationCard({ invitations }) {
     setModal({ ...modal, invitation: invitation, isOpen: true });
 
   return (
-    <Card className={styles.card}>
+    <Card className={styles.tableCard}>
       <CardHeader
         className={styles.cardHeader}
         title="Liste des invitations"
@@ -189,8 +189,8 @@ export default function InvitationCard({ invitations }) {
             )}
             {invitations.datas != null && invitations.datas.length > 0 ? (
               <>
-                <TableContainer component={Paper}>
-                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                <TableContainer component={Paper} style={{minHeight: 370, maxHeight: 370}}>
+                  <Table sx={{ minWidth: 650 }} aria-label="simple table" stickyHeader>
                     <TableHead>
                       <TableRow>
                         <TableCell align="center" />
