@@ -97,7 +97,7 @@ export default function GuestCard({ invitations }) {
       <CardContent className={styles.cardContent}>
         <PDFDownloadLink
           document={<MyDocument guestList={guestList} />}
-          fileName="somename.pdf"
+          fileName="liste_invites_mariage-yann-et-lucie.pdf"
         >
           {({ blob, url, loading, error }) =>
             loading ? (
