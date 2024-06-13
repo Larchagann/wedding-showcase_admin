@@ -93,7 +93,11 @@ function Row({ invitation, updateInvitation, deleteInvitation }) {
                     <TableCell align="center">Nom</TableCell>
                     <TableCell align="center">Prénom</TableCell>
                     <TableCell align="center">Présent ?</TableCell>
-                    <TableCell align="center">Besoin hébergement ?</TableCell>
+                    <TableCell align="center">
+                      Dors dans la salle
+                      <br />
+                      de réception ?
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -189,8 +193,15 @@ export default function InvitationCard({ invitations }) {
             )}
             {invitations.datas != null && invitations.datas.length > 0 ? (
               <>
-                <TableContainer component={Paper} style={{minHeight: 370, maxHeight: 370}}>
-                  <Table sx={{ minWidth: 650 }} aria-label="simple table" stickyHeader>
+                <TableContainer
+                  component={Paper}
+                  style={{ minHeight: 370, maxHeight: 370 }}
+                >
+                  <Table
+                    sx={{ minWidth: 650 }}
+                    aria-label="simple table"
+                    stickyHeader
+                  >
                     <TableHead>
                       <TableRow>
                         <TableCell align="center" />
@@ -203,18 +214,23 @@ export default function InvitationCard({ invitations }) {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {invitations.datas.sort((a,b) => a.name.localeCompare(b.name)).map((item) => {
-                        return (
-                          <Row
-                            key={item.idInvitation}
-                            invitation={item}
-                            updateInvitation={handleModalUpdate}
-                            deleteInvitation={() =>
-                              invitations.deleteInvitation(item, context.token)
-                            }
-                          />
-                        );
-                      })}
+                      {invitations.datas
+                        .sort((a, b) => a.name.localeCompare(b.name))
+                        .map((item) => {
+                          return (
+                            <Row
+                              key={item.idInvitation}
+                              invitation={item}
+                              updateInvitation={handleModalUpdate}
+                              deleteInvitation={() =>
+                                invitations.deleteInvitation(
+                                  item,
+                                  context.token
+                                )
+                              }
+                            />
+                          );
+                        })}
                     </TableBody>
                   </Table>
                 </TableContainer>

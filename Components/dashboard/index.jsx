@@ -11,6 +11,7 @@ import DishTypeCard from "../dishTypeCard";
 import AnsweredChartCard from "../answeredChartCard";
 import { useDishList } from "@/hooks/useDishList";
 import DishCard from "../dishCard";
+import GuestCard from "../guestCard";
 
 export default function Dashboard() {
   const context = useUserContext();
@@ -60,6 +61,9 @@ export default function Dashboard() {
         </Grid>
         <Grid item xs={12} md={5}>
           <DishCard dishs={dishs} />
+        </Grid>
+        <Grid item xs={12} md={5}>
+          <GuestCard invitations={invitations} />
         </Grid>
       </Grid>
     </>
