@@ -80,7 +80,7 @@ export default function DishCard({ dishs }) {
               </>
             ) : (
               <div className={styles.itemCenterContent}>
-                Personne n'a ajouté de plat.
+                Personne n'a ajout&apos; de plat.
               </div>
             )}
           </>
